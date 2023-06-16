@@ -1,32 +1,11 @@
 
+let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
 
-// // Adding the tile layer
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-// }).addTo(myMap);
-
-
-// d3.json(quakeURL).then(function(response) {
-//     let markers = L.markerClusterGroup();
-//     for (let i=0; i< response.length; i++){
-//         let location = response[i].location;
-//         if (location) {
-//             markers.addLayer(L.marker([location.coordinates[1],location.coordinates[0]])
-//             .bundPopup(response[i].descriptor));
-        
-//         }
-//     }
-//     myMap.addLayer(markers);
-// })
 
 let colorScale = d3.scaleSequential()
   .domain([0, 10]) // Adjust the domain based on your data range
   .interpolator(d3.interpolateYlOrRd); // Adjust the color scale as desired (e.g., interpolateBlues, interpolateReds, etc.)
 
-let legend = L.control({ position: 'bottomright' });
-
-
-let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.geojson";
 
 let map = L.map("map", {
     center: [28.58, -103.46],
@@ -36,17 +15,17 @@ let map = L.map("map", {
 
 
 // Create a legend to display information about our map.
-let info = L.control({
+let legend = L.control({
     position: "bottomright"
   });
   
   // When the layer control is added, insert a div with the class of "legend".
-  info.onAdd = function() {
+  legend.onAdd = function() {
     let div = L.DomUtil.create("div", "legend");
     return div;
   };
   // Add the info legend to the map.
-  info.addTo(map);
+  legend.addTo(map);
   
 
 
