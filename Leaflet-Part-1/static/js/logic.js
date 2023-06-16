@@ -3,9 +3,8 @@ let url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_month.g
 
 
 let colorScale = d3.scaleSequential()
-  .domain([0, 10]) // Adjust the domain based on your data range
-  .interpolator(d3.interpolateYlOrRd); // Adjust the color scale as desired (e.g., interpolateBlues, interpolateReds, etc.)
-
+  .domain([0, 10]) 
+  .interpolator(d3.interpolateYlOrRd); 
 
 let map = L.map("map", {
     center: [28.58, -103.46],
@@ -22,13 +21,12 @@ let legend = L.control({
   // When the layer control is added, insert a div with the class of "legend".
   legend.onAdd = function() {
     let div = L.DomUtil.create("div", "legend");
+    // console.log(div);
     return div;
   };
   // Add the info legend to the map.
   legend.addTo(map);
   
-
-
 
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     subdomains: 'abcd',
@@ -56,7 +54,7 @@ d3.json(url)
         };
       },
       onEachFeature: function(feature, layer) {
-        layer.bindPopup("<b>Magnitude:</b> " + feature.properties.mag + "<br><b>Location:</b> " + feature.properties.place);
+        layer.bindPopup("<b>depth:</b> " + feature.properties.mag + "<br><b>Location:</b> " + feature.properties.place);
       }
     }).addTo(map);
   })
@@ -66,12 +64,13 @@ d3.json(url)
   });
 
 // Helper functions for styling and formatting
-function getColor(magnitude) {
-  return magnitude > 5 ? "#f06b6b" :
-         magnitude > 4 ? "#f0a76b" :
-                         "#f3ba4d";
+function getColor(feature) {
+  let depth = feature.geometry.coordinates[2];
+  return colorScale(depth);
 }
 
 function getRadius(magnitude) {
-  return Math.sqrt(Math.abs(magnitude)) * 4;
+  return Math.sqrt(Math.abs(magnitude)) * 5;
 }
+
+
