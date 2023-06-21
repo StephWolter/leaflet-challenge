@@ -24,29 +24,12 @@
                 * index.html            # main javascript code
             * README.md
 
-## Part 1: DropDown Menu
-
-* 
-
-## Part 2: MetaData Chart
-* 
-
-## Part 3: Bar, Bubble, and Gauge Chart
-* Bar Chart 
-    * Check how many records are available
-    * Check a record to see the structure.
-    * Convert to dataframe **grossest_df**
-* Bubble Chart
-    * Check how many records are available
-    * Check a record to see the structure.
-    * Convert to dataframe **best_df**
-* Gauge Chart
-    * Check how many records are available
-    * Check a record to see the structure.
-    * Convert to dataframe **competition_df**
-
-## Publish a page with dashboard
-* [Belly Button Bacteria Dashboard](https://stephwolter.github.io/belly-button-challenge/)
+## Part 1: Gathered and displayed data
+* chose the high magnitude earthquakes for the past 30 days
+* set the center of the map
+* set the legend to the bottom right
+* attached color to the magnitude
+* attached size to the depth
 
 
 
